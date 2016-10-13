@@ -20,20 +20,15 @@ module.exports = (function () {
     configureGlobalsFromProjectMetadata();
 
     function configureGlobalsFromProjectMetadata(){
-        var gcloud = require("google-cloud");
-        var resource = gcloud.resource;
+        var metadata = require("google-compute-metadata");
 
-        var resourceClient = resource({
-            projectId: projectID
+        metadata.instance(function (err, data) {
+            console.log("Instance Id: " +  data.id);
         });
-        resourceClient.getProjects(function(err, projects) {
-                console.log(projects);
-        });
-        var project = resourceClient.project();
 
-        project.getMetadata(function(err, metadata){
-            console.log(metadata);
-            GLOBALS.meta = metadata;
+        metadata.project(function (err, data) {
+            console.log("Project Id: " +  data.projectId);
+            GLOBALS.meta = data;
         });
     }
 

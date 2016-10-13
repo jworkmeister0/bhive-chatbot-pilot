@@ -17,6 +17,7 @@
     "config": "^1.21.0",
     "express": "^4.14.0",
     "google-cloud": "^0.41.2",
+    "google-compute-metadata": "^1.2.1",
     "hbs": "^4.0.1",
     "request": "^2.75.0"
   },
