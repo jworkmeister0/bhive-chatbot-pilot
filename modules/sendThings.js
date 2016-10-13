@@ -2,8 +2,34 @@
 
 module.exports = function(){
   var request = require("request");
-  var SERVER_URL = "REPLACE ME!!!!";
-  var PAGE_ACCESS_TOKEN = "REPLACE ME!!!!";
+  var globals = require("./globals");
+  var SERVER_URL = globals.getServerUrl();
+  var PAGE_ACCESS_TOKEN = globals.getPageAccessToken();
+
+  // This function is basically the engine of this module.
+  // All of the sending functions utilize this
+  function callSendAPI(messageData){
+    request({
+      uri: "https://graph.facebook.com/v2.6/me/messages",
+      qs: { access_token: PAGE_ACCESS_TOKEN },
+      method: "POST",
+      json: messageData
+
+    }, function (error, response, body) {
+      if (!error && response.statusCode === 200) {
+        var recipientId = body.recipient_id;
+        var messageId = body.message_id;
+
+        if (messageId) {
+          console.log("Successfully sent message with id %s to recipient %s", messageId, recipientId);
+        } else {
+          console.log("Successfully called Send API for recipient %s", recipientId);
+        }
+      } else {
+        console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+      }
+    });  
+  }
 
   return {
     sendTextMessage: function(recipientId, messageText){
@@ -332,27 +358,4 @@ module.exports = function(){
       callSendAPI(messageData);
     },
   };
-
-  function callSendAPI(messageData){
-    request({
-      uri: 'https://graph.facebook.com/v2.6/me/messages',
-      qs: { access_token: PAGE_ACCESS_TOKEN },
-      method: 'POST',
-      json: messageData
-
-    }, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        var recipientId = body.recipient_id;
-        var messageId = body.message_id;
-
-        if (messageId) {
-          console.log("Successfully sent message with id %s to recipient %s", messageId, recipientId);
-        } else {
-          console.log("Successfully called Send API for recipient %s", recipientId);
-        }
-      } else {
-        console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
-      }
-    });  
-  }
 };

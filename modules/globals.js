@@ -1,13 +1,16 @@
+"use strict";
+
 /**
  * Holds configuration
  */
-module.exports = function () {
+module.exports = (function () {
     // Private values
+    // DON'T PUT ANYTHING HERE!!!!!!
     var GLOBALS = {
-        APP_SECRET: "",
-        VALIDATION_TOKEN: "",
-        PAGE_ACCESS_TOKEN: "",
-        SERVER_URL: ""
+        APP_SECRET: "shhhhh",
+        VALIDATION_TOKEN: "nope",
+        PAGE_ACCESS_TOKEN: "this is data",
+        SERVER_URL: "asdfasdf"
     };
 
 
@@ -26,4 +29,4 @@ module.exports = function () {
             return GLOBALS.SERVER_URL;
         }
     };
-};
+}());
