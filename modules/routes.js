@@ -12,7 +12,7 @@ module.exports = function (app){
 
 	app.get("/test", function(req, res){
 		var token = globals.getMeta();
-		res.send("I got your test: " + token);
+		res.send("I got your test: " + JSON.sringify(token, nyll, 2));
 	});
 
 	app.get("/webhook", function(req, res){
