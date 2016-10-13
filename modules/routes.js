@@ -11,7 +11,8 @@ module.exports = function (app){
 	});
 
 	app.get("/test", function(req, res){
-		res.send("I got your test.");
+		var token = globals.getMeta();
+		res.send("I got your test: " + token);
 	});
 
 	app.get("/webhook", function(req, res){
