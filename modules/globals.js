@@ -4,15 +4,13 @@
  * Holds configuration
  */
 module.exports = (function () {
-    var projectID = "chatbot-pilot";
-
+    var metadata = require("google-compute-metadata");
 
     // Private values
     // DON'T HARDCODE ANYTHING HERE!!!!!!
     var GLOBALS = {
         APP_SECRET: "",
         VALIDATION_TOKEN: "",
-        meta: "",
         PAGE_ACCESS_TOKEN: "this is data",
         SERVER_URL: "asdfasdf"
     };
@@ -20,15 +18,8 @@ module.exports = (function () {
     configureGlobalsFromProjectMetadata();
 
     function configureGlobalsFromProjectMetadata(){
-        var metadata = require("google-compute-metadata");
-
-        metadata.instance(function (err, data) {
-            console.log("Instance Id: " +  data.id);
-        });
-
         metadata.project(function (err, data) {
-            console.log("Project Id: " +  data.projectId);
-            GLOBALS.meta = data;
+            GLOBALS.VALIDATION_TOKEN = data.attributes.verify_token;
         });
     }
 
