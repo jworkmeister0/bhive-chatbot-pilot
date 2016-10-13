@@ -1,0 +1,13 @@
+{
+  "name": "brunner-chatbot",
+  "description": "chatbot pilot",
+  "main": "app.js",
+  "authors": [
+    "brunnerworks (jw)"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}
