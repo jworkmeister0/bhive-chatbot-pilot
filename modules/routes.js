@@ -10,6 +10,10 @@ module.exports = function (app){
 		res.send("hello there!");
 	});
 
+	app.get("/test", function(req, res){
+		res.send("I got your test.");
+	});
+
 	app.get("/webhook", function(req, res){
 		if (req.query["hub.mode"] === "subscribe" && 
 			req.query["hub.verify_token"] === VALIDATION_TOKEN){
