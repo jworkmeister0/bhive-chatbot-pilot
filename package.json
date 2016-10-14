@@ -4,11 +4,14 @@
   "description": "chatbot pilot",
   "main": "app.js",
   "engines": {
-    "node": ">=4.6.0"
+    "node": "~4.2"
   },
+  "repository": "https://github.com/jworkmeister0/bhive-chatbot-pilot.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "monitor": "nodemon app.js",
+    "deploy": "gcloud app deploy"
   },
   "author": "brunnerworks (jw)",
   "license": "ISC",
@@ -16,7 +19,6 @@
     "body-parser": "^1.15.2",
     "config": "^1.21.0",
     "express": "^4.14.0",
-    "google-cloud": "^0.41.2",
     "google-compute-metadata": "^1.2.1",
     "hbs": "^4.0.1",
     "request": "^2.75.0"
