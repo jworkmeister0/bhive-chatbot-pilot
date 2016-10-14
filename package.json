@@ -21,6 +21,7 @@
     "express": "^4.14.0",
     "google-compute-metadata": "^1.2.1",
     "hbs": "^4.0.1",
+    "nodemon": "latest",
     "request": "^2.75.0"
   },
   "devDependencies": {
