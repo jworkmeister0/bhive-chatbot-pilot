@@ -1,10 +1,9 @@
 "use strict";
 
-module.exports = function(){
+module.exports = (function(){
   var request = require("request");
-  var globals = require("./globals");
-  var SERVER_URL = globals.getServerUrl();
-  var PAGE_ACCESS_TOKEN = globals.getPageAccessToken();
+  var SERVER_URL = process.env.SERVER_URL;
+  var PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
   // This function is basically the engine of this module.
   // All of the sending functions utilize this
@@ -358,4 +357,4 @@ module.exports = function(){
       callSendAPI(messageData);
     },
   };
-};
+}());

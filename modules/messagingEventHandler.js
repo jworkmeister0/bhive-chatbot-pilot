@@ -4,9 +4,8 @@
 module.exports = (function(){
 
   var sender = require("./sendThings");
-  var globals = require("./globals");
 
-  var APP_SECRET = globals.getAppSecret();
+  var APP_SECRET = process.env.APP_SECRET;
 
   var messagingEventHandler = {
 
