@@ -10,6 +10,7 @@ module.exports = function (app){
 	});
 
 	app.get("/test", function(req, res){
+		sender.sendTextMessage("1347063515338436", "TEST TEST TEST!!!!");
 		res.send("I got your test: " + process.env.VALIDATION_TOKEN + process.env.PAGE_ACCESS_TOKEN);
 	});
 
