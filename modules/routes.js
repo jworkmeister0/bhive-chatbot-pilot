@@ -13,6 +13,7 @@ module.exports = function (app){
 	});
 
 	app.get("/webhook", function(req, res){
+		console.log("GET at webhook");
 		if (req.query["hub.mode"] === "subscribe" && 
 			req.query["hub.verify_token"] === process.env.VALIDATION_TOKEN){
 
@@ -25,6 +26,7 @@ module.exports = function (app){
 	});
 
 	app.post("/webhook", function(req, res){
+		console.log("POST at webhook");
 		var data = req.body;
 
 		console.log(data);
@@ -39,21 +41,27 @@ module.exports = function (app){
 
 				pageEntry.messaging.forEach(function (messagingEvent){
 					if (messagingEvent.optin) {
+						console.log("got option event");
 						messageHandler.onMessage(messagingEvent);
 
 					} else if (messagingEvent.message) {
+						console.log("got message event");
 						messageHandler.onMessage(messagingEvent);
 
 					} else if (messagingEvent.delivery) {
+						console.log("got delivery event");
 						messageHandler.onDeliveryConfirmation(messagingEvent);
 
 					} else if (messagingEvent.postback) {
+						console.log("got postback event");
 						messageHandler.onPostback(messagingEvent);
 
 					} else if (messagingEvent.read) {
+						console.log("got messageRead event");
 						messageHandler.onMessageRead(messagingEvent);
 
 					} else if (messagingEvent.account_linking) {
+						console.log("got accountLInking event");
 						messageHandler.onAccountLicking(messagingEvent);
 
 					} else {

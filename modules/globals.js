@@ -16,8 +16,12 @@ module.exports = (function () {
     };
 
     metadata.project(function (err, data) {
-        GLOBALS.VALIDATION_TOKEN = data.attributes.verify_token;
-        process.env.VALIDATION_TOKEN = data.attributes.verify_token;
+        if (data){
+            GLOBALS.VALIDATION_TOKEN = data.attributes.verify_token;
+            process.env.VALIDATION_TOKEN = data.attributes.verify_token;
+        }else{
+            console.log("COULDN'T GET METADATA");
+        }
     });
 
 
