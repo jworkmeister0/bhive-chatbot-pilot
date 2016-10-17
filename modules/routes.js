@@ -4,20 +4,17 @@ module.exports = function (app){
 	var globals = require("./globals");
 	var messageHandler = require("./messagingEventHandler");
 
-	var VALIDATION_TOKEN = globals.getValidationToken();
-
 	app.get("/", function(req, res){
 		res.send("hello there!");
 	});
 
 	app.get("/test", function(req, res){
-		var token = globals.getMeta();
-		res.send("I got your test: " + JSON.stringify(token, null, 2));
+		res.send("I got your test: " + process.env.VALIDATION_TOKEN);
 	});
 
 	app.get("/webhook", function(req, res){
 		if (req.query["hub.mode"] === "subscribe" && 
-			req.query["hub.verify_token"] === VALIDATION_TOKEN){
+			req.query["hub.verify_token"] === process.env.VALIDATION_TOKEN){
 
 				console.log("validating webhook");
 				res.status(200).send(req.query["hub.challenge"]);

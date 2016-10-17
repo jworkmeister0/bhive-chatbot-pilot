@@ -15,13 +15,10 @@ module.exports = (function () {
         SERVER_URL: "asdfasdf"
     };
 
-    configureGlobalsFromProjectMetadata();
-
-    function configureGlobalsFromProjectMetadata(){
-        metadata.project(function (err, data) {
-            GLOBALS.VALIDATION_TOKEN = data.attributes.verify_token;
-        });
-    }
+    metadata.project(function (err, data) {
+        GLOBALS.VALIDATION_TOKEN = data.attributes.verify_token;
+        process.env.VALIDATION_TOKEN = data.attributes.verify_token;
+    });
 
 
     // Getters (no setters)
