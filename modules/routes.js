@@ -2,6 +2,7 @@
 module.exports = function (app){
 
 	var globals = require("./globals");
+	var sender = require("./sendThings");
 	var messageHandler = require("./messagingEventHandler");
 
 	app.get("/", function(req, res){
@@ -29,20 +30,19 @@ module.exports = function (app){
 		console.log("POST at webhook");
 		var data = req.body;
 
+		sender.sendTextMessage("1347063515338436", "TEST TEST TEST!!!!");
 		console.log(data);
 
 		if(data.object === "page"){
 			data.entry.forEach(function(pageEntry) {
 
-				// jshint ignore: start
 				var pageID = pageEntry.id;
 			  var timeOfEvent = pageEntry.time;
-				// jshint ignore: end
 
 				pageEntry.messaging.forEach(function (messagingEvent){
 					if (messagingEvent.optin) {
 						console.log("got option event");
-						messageHandler.receivedAuthentication(messagingEvent)
+						messageHandler.receivedAuthentication(messagingEvent);
 
 					} else if (messagingEvent.message) {
 						console.log("got message event");
