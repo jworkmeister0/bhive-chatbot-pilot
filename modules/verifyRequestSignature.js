@@ -5,7 +5,7 @@ module.exports = (function(){
 	var crypto = require("crypto");
 	var globals = require("./globals");
 
-	var APP_SECRET = globals.getAppSecret();
+	var APP_SECRET = process.env.APP_SECRET;
 
 	var verifyRequestSignature = function (req, res, buf){
 		var signature = req.headers["x-hub-signature"];

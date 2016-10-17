@@ -9,13 +9,13 @@ module.exports = function (app){
 	});
 
 	app.get("/test", function(req, res){
-		res.send("I got your test: " + process.env.VALIDATION_TOKEN);
+		res.send("I got your test: " + process.env.VALIDATION_TOKEN + process.env.PAGE_ACCESS_TOKEN);
 	});
 
 	app.get("/webhook", function(req, res){
 		console.log("GET at webhook");
 		if (req.query["hub.mode"] === "subscribe" && 
-			req.query["hub.verify_token"] === process.env.VALIDATION_TOKEN){
+			req.query["hub.verify_token"] == process.env.VALIDATION_TOKEN){
 
 				console.log("validating webhook");
 				res.status(200).send(req.query["hub.challenge"]);
@@ -26,7 +26,7 @@ module.exports = function (app){
 	});
 
 	app.post("/webhook", function(req, res){
-		console.log("POST at webhook");k
+		console.log("POST at webhook");
 		var data = req.body;
 
 		console.log(data);

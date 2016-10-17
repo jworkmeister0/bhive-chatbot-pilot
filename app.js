@@ -3,6 +3,7 @@
 // NPM Modules
 var bodyParser = require("body-parser");
 var express = require("express");
+require("./modules/globals.js");
 
 // Configure Express
 var app = express();
