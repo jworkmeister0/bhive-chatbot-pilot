@@ -8,6 +8,8 @@ module.exports = (function(){
   // This function is basically the engine of this module.
   // All of the sending functions utilize this
   function callSendAPI(messageData){
+    console.log("CALLING SEND API");
+    console.log(messageData);
     request({
       uri: "https://graph.facebook.com/v2.8/me/messages",
       qs: { access_token: PAGE_ACCESS_TOKEN },
