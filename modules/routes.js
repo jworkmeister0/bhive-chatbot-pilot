@@ -26,7 +26,7 @@ module.exports = function (app){
 	});
 
 	app.post("/webhook", function(req, res){
-		console.log("POST at webhook");
+		console.log("POST at webhook");k
 		var data = req.body;
 
 		console.log(data);
@@ -87,4 +87,8 @@ module.exports = function (app){
 			redirectURISuccess: redirectURISuccess
 		});
 	});
+
+	app.get("/privacy", function(req, res){
+		res.send("some info about privacy goes here!!");
+	})
 };
