@@ -163,7 +163,7 @@ module.exports = (function(){
 
       console.log("Received message read event for watermark %d and sequence " +
         "number %d", watermark, sequenceNumber);
-},
+    },
 
     onAccountLinking: function(event){
       var senderID = event.sender.id;
@@ -174,7 +174,7 @@ module.exports = (function(){
 
       console.log("Received account link event with for user %d with status %s " +
         "and auth code %s ", senderID, status, authCode);
-}
+    }
   };
 
   return messagingEventHandler;

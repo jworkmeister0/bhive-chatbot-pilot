@@ -9,7 +9,7 @@ module.exports = (function(){
   // All of the sending functions utilize this
   function callSendAPI(messageData){
     request({
-      uri: "https://graph.facebook.com/v2.6/me/messages",
+      uri: "https://graph.facebook.com/v2.8/me/messages",
       qs: { access_token: PAGE_ACCESS_TOKEN },
       method: "POST",
       json: messageData
@@ -32,6 +32,7 @@ module.exports = (function(){
 
   return {
     sendTextMessage: function(recipientId, messageText){
+      console.log("SENDING TEXT MESSAGE " + messageText + "\n TO " + recipientId);
       var messageData = {
         recipient: {
           id: recipientId

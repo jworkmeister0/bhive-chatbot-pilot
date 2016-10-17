@@ -2,7 +2,6 @@
 "use strict";
 
 module.exports = (function(){
-	var crypto = require("crypto");
 	var globals = require("./globals");
 
 	var APP_SECRET = process.env.APP_SECRET;
