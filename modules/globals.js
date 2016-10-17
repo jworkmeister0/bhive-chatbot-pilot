@@ -20,8 +20,12 @@ module.exports = (function () {
     function configureGlobalsFromProjectMetadata(){
         metadata.project(function (err, data) {
             if (data){
-                data = JSON.parse(data);
-                GLOBALS.VALIDATION_TOKEN = data.attributes.verify_token;
+                try{
+                    data = JSON.parse(data);
+                    GLOBALS.VALIDATION_TOKEN = data.attributes.verify_token;
+                }catch(e){
+                    console.log("can't get metadata!!!!!!");
+                }
             }
         });
     }
