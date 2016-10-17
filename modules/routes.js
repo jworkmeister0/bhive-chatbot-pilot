@@ -31,9 +31,6 @@ module.exports = function (app){
 		console.log("POST at webhook");
 		var data = req.body;
 
-		sender.sendTextMessage("1347063515338436", "TEST TEST TEST!!!!");
-		console.log(data);
-
 		if(data.object === "page"){
 			data.entry.forEach(function(pageEntry) {
 
